@@ -3,15 +3,19 @@
   "bundleVersion": 1,
   "commands": [
     {
-      "name": "my-command",
-      "identifier": "my-command-identifier",
-      "script": "./my-command.js"
+      "name": "Separate Shapes",
+      "identifier": "separate-shapes",
+      "shortcut": "ctrl option -",
+      "description": "Performs a ”boolean” separation operation on two selected shapes",
+      "icon": "icons/separate-shapes.png",
+      "script": "./separate-shapes.js"
     }
   ],
   "menu": {
     "title": "SeparateShapes",
+    "isRoot": true,
     "items": [
-      "my-command-identifier"
+      "separate-shapes"
     ]
   }
 }
