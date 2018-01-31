@@ -12,7 +12,7 @@
     }
   ],
   "menu": {
-    "title": "SeparateShapes",
+    "title": "Separate Shapes",
     "isRoot": true,
     "items": [
       "separate-shapes"

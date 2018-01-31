@@ -1,6 +1,5 @@
 # build artifacts
-SeparateShapes-plugin.sketchplugin/Contents/Sketch
-SeparateShapes-plugin.sketchplugin/Contents/Resources/_webpack_resources
+SeparateShapes-plugin.sketchplugin
 
 # npm
 node_modules
