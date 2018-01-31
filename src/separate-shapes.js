@@ -7,22 +7,27 @@ var isNullOrNil = function(value) {
   return true
 };
 
-var shapeGroupFromOp = function(shape1, shape2, opName) {
+var ops = {
+  SUBTRACT: "-",
+  INTERSECT: "∩"
+};
+
+var shapeGroupFromOp = function(shape1, shape2, op) {
   let path1 = shape1.bezierPath(),
       path2 = shape2.bezierPath(),
       newPath = null;
-  switch(opName) {
-    case "subtract":
+  switch(op) {
+    case ops.SUBTRACT:
       newPath = path1.booleanSubtractWith(path2);
       break;
-    case "intersect":
+    case ops.INTERSECT:
       newPath = path1.booleanIntersectWith(path2);
       break;
   }
   if (newPath) {
     let sg = MSShapeGroup.shapeWithBezierPath(newPath);
     if (!isNullOrNil(sg)) {
-      sg.setName(shape1.name() + " - " + shape2.name());
+      sg.setName(shape1.name() + " " + op + " " + shape2.name());
       sg.setStyle(shape1.style());
       return sg;
     }
@@ -35,9 +40,9 @@ export default function(context) {
 
   if (selection.count() == 2) {
     let separatedShapeGroups = [];
-    separatedShapeGroups.push(shapeGroupFromOp(selection[1], selection[0], "subtract"));
-    separatedShapeGroups.push(shapeGroupFromOp(selection[0], selection[1], "subtract"));
-    separatedShapeGroups.push(shapeGroupFromOp(selection[0], selection[1], "intersect"));
+    separatedShapeGroups.push(shapeGroupFromOp(selection[1], selection[0], ops.SUBTRACT));
+    separatedShapeGroups.push(shapeGroupFromOp(selection[0], selection[1], ops.SUBTRACT));
+    separatedShapeGroups.push(shapeGroupFromOp(selection[0], selection[1], ops.INTERSECT));
     const filteredGroups = separatedShapeGroups.filter(layer => layer);
 
     context.document.currentPage().addLayers(filteredGroups);
