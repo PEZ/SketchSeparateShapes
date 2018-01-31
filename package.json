@@ -1,7 +1,10 @@
 {
   "name": "separateshapes",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A plugin for ”boolean” separating two overlapping shapes. Like _divide_ in Adobe Illustrator's Pathfinder.",
+  "author": {
+    "name": "Better Than Tomorrow"
+  },
   "engines": {
     "sketch": ">=3.4"
   },
@@ -12,7 +15,7 @@
   "skpm": {
     "name": "SeparateShapes",
     "manifest": "src/manifest.json",
-    "main": "plugin.sketchplugin"
+    "main": "SeparateShapes-plugin.sketchplugin"
   },
   "scripts": {
     "build": "skpm-build",
