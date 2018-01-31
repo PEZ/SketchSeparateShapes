@@ -45,7 +45,7 @@ export default function(context) {
     separatedShapeGroups.push(shapeGroupFromOp(selection[0], selection[1], ops.INTERSECT));
     const filteredGroups = separatedShapeGroups.filter(layer => layer);
 
-    context.document.currentPage().addLayers(filteredGroups);
+    selection[0].parentGroup().insertLayers_afterLayer(filteredGroups, selection[0]);
     context.document.currentPage().changeSelectionBySelectingLayers(filteredGroups);
 
     selection[0].removeFromParent();
