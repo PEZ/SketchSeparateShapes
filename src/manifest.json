@@ -7,7 +7,7 @@
       "identifier": "separate-shapes",
       "shortcut": "ctrl option -",
       "description": "Performs a ”boolean” separation operation on two selected shapes",
-      "icon": "icons/separate-shapes.png",
+      "icon": "icons/separate.png",
       "script": "./separate-shapes.js"
     }
   ],
