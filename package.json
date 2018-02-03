@@ -18,7 +18,7 @@
     "main": "SeparateShapes-plugin.sketchplugin"
   },
   "scripts": {
-    "build": "skpm-build && ./post-build.sh",
+    "build": "skpm-build && ./post_build.sh",
     "watch": "skpm-build --watch",
     "start": "skpm-build --watch --run",
     "postinstall": "npm run build && skpm-link"
