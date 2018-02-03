@@ -27,9 +27,16 @@ var shapeGroupFromOp = function(shape1, shape2, op) {
   if (newPath) {
     let sg = MSShapeGroup.shapeWithBezierPath(newPath);
     if (!isNullOrNil(sg)) {
-      sg.setName(shape1.name() + " " + op + " " + shape2.name());
       sg.setStyle(shape1.style());
-      return sg;
+      let splitNS = sg.splitPathsIntoShapes();
+      let count = splitNS.count();
+      let splitJS = new Array(count);
+      for (let i = count - 1; i >= 0; i--) {
+        let shape = splitNS[i];
+        shape.setName(shape1.name() + " " + op + " " + shape2.name() + (i > 0 ? " " + i : ""));
+        splitJS[i] = shape;
+      }
+      return splitJS;
     }
   }
   return null;
@@ -39,14 +46,14 @@ export default function(context) {
   let selection = context.selection;
 
   if (selection.count() == 2) {
-    let separatedShapeGroups = [];
-    separatedShapeGroups.push(shapeGroupFromOp(selection[1], selection[0], ops.SUBTRACT));
-    separatedShapeGroups.push(shapeGroupFromOp(selection[0], selection[1], ops.SUBTRACT));
-    separatedShapeGroups.push(shapeGroupFromOp(selection[0], selection[1], ops.INTERSECT));
-    const filteredGroups = separatedShapeGroups.filter(layer => layer);
+    const separatedShapeGroups = [].concat.apply([], [
+      shapeGroupFromOp(selection[1], selection[0], ops.SUBTRACT),
+      shapeGroupFromOp(selection[0], selection[1], ops.SUBTRACT),
+      shapeGroupFromOp(selection[0], selection[1], ops.INTERSECT)
+    ].filter(layer => layer));
 
-    selection[0].parentGroup().insertLayers_afterLayer(filteredGroups, selection[0]);
-    context.document.currentPage().changeSelectionBySelectingLayers(filteredGroups);
+    selection[0].parentGroup().insertLayers_afterLayer(separatedShapeGroups, selection[0]);
+    context.document.currentPage().changeSelectionBySelectingLayers(separatedShapeGroups);
 
     selection[0].removeFromParent();
     selection[1].removeFromParent();
