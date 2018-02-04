@@ -1,0 +1,28 @@
+{
+  "identifier": "com.betterthantomorrow.sketch.separate",
+  "compatibleVersion": 3,
+  "bundleVersion": 1,
+  "commands": [
+    {
+      "name": "Separate Shapes",
+      "identifier": "separate-shapes",
+      "shortcut": "ctrl option -",
+      "description": "Separate two selected shapes (a k a divide)",
+      "icon": "icons/separate.png",
+      "script": "separate-shapes.js"
+    }
+  ],
+  "menu": {
+    "title": "Separate Shapes",
+    "isRoot": true,
+    "items": [
+      "separate-shapes"
+    ]
+  },
+  "version": "1.1.0",
+  "description": "A plugin for ”boolean” separating two overlapping shapes. Like _divide_ in Adobe Illustrator's Pathfinder.",
+  "name": "SeparateShapes",
+  "disableCocoaScriptPreprocessor": true,
+  "appcast": "https://raw.githubusercontent.com/PEZ/SketchSeparateShapes/master/.appcast.xml",
+  "author": "Better Than Tomorrow"
+}

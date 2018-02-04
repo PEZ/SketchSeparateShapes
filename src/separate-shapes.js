@@ -42,7 +42,7 @@ var shapeGroupFromOp = function(shape1, shape2, op) {
   return null;
 };
 
-export default function(context) {
+var separate = function(context) {
   let selection = context.selection;
 
   if (selection.count() == 2) {
@@ -62,3 +62,5 @@ export default function(context) {
     context.document.showMessage("Select exactly two shapes");
   }
 }
+
+export default separate;

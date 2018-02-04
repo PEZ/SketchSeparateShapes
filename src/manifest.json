@@ -1,4 +1,5 @@
 {
+  "identifier" : "com.betterthantomorrow.sketch.separate",
   "compatibleVersion": 3,
   "bundleVersion": 1,
   "commands": [
@@ -6,7 +7,7 @@
       "name": "Separate Shapes",
       "identifier": "separate-shapes",
       "shortcut": "ctrl option -",
-      "description": "Performs a ”boolean” separation operation on two selected shapes",
+      "description": "Separate two selected shapes (a k a divide)",
       "icon": "icons/separate.png",
       "script": "./separate-shapes.js"
     }
