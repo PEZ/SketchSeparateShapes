@@ -6,6 +6,6 @@ A plugin for ”boolean” separating two overlapping shapes. Like _divide_ in A
 
 ## Install
 
-1. Download the zip from [the latest release](https://github.com/PEZ/SketchSeparateShapes/releases)
+1. Download the ”To install” zip file from [the latest release](https://github.com/PEZ/SketchSeparateShapes/releases)
 2. Unzip
 3. Double-click the `.sketchplugin` package.
