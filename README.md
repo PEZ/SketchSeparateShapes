@@ -8,8 +8,12 @@ A plugin for ”boolean” separating two overlapping shapes. Like _divide_ in A
 
 ## Install
 
+[![Install Separate Shapes with Sketchpacks](https://sketchpacks-com.s3.amazonaws.com/assets/badges/sketchpacks-badge-install.png "Install Separate Shapes with Sketchpacks")](https://sketchpacks.com/PEZ/SketchSeparateShapes/install)
+
+Or if you use [Runner](http://bit.ly/SketchRunnerWebsite), it can install this plugin as well.
+
+Or, do it manually:
+
 1. Download the ”To install” zip file from [the latest release](https://github.com/PEZ/SketchSeparateShapes/releases)
 2. Unzip
 3. Double-click the `.sketchplugin` package.
-
-(The plugin can also be [installed with Runner](http://bit.ly/SketchRunnerWebsite))
