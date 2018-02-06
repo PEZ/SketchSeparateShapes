@@ -90,8 +90,8 @@ var ops = {
 };
 
 var shapeGroupFromOp = function shapeGroupFromOp(shape1, shape2, op) {
-  var path1 = shape1.bezierPath(),
-      path2 = shape2.bezierPath(),
+  var path1 = shape1.bezierPathWithTransforms(),
+      path2 = shape2.bezierPathWithTransforms(),
       newPath = null;
   switch (op) {
     case ops.SUBTRACT:
