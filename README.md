@@ -4,8 +4,12 @@
 
 A plugin for ”boolean” separating two overlapping shapes. Like _divide_ in Adobe Illustrator's Pathfinder.
 
+## Demo
 ![Demo](Separate_Shapes_demo.gif)
 
+It can separate several shapes from the base shape, a multi-split, if you like:
+
+![Demo](Separate_Shapes_MultiSplit_demo.gif)
 ## Install
 
 [![Install Separate Shapes with Sketchpacks](https://sketchpacks-com.s3.amazonaws.com/assets/badges/sketchpacks-badge-install.png "Install Separate Shapes with Sketchpacks")](https://sketchpacks.com/PEZ/SketchSeparateShapes/install)
