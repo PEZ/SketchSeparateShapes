@@ -69,7 +69,7 @@ var separate = function(context) {
     let baseShape = baseShapeBySubtractingOthers(selection, layers);
     separatedShapeGroups.push(splitAndStylePath(baseShape, selection[0], baseShape, ops.SUBTRACT));
 
-    for (let i = layers - 1; i > 0; i--) {
+    for (let i = 1; i < layers; i++) {
       separatedShapeGroups.push(shapeGroupFromOp(selection[i], selection[0], ops.SUBTRACT));
       separatedShapeGroups.push(shapeGroupFromOp(selection[0], selection[i], ops.INTERSECT));
       selection[i].removeFromParent();
