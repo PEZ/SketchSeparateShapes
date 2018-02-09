@@ -8,11 +8,6 @@ A plugin for ”boolean” separating of overlapping shapes. Similar to _divide_
 
 ![Demo](Separate_Shapes_demo.gif)
 
-It can separate several shapes from the base shape, a multi-split, if you like:
-
-![Demo](Separate_Shapes_MultiSplit_demo.gif)
-
-
 ## Install
 
 [![Install Separate Shapes with Sketchpacks](https://sketchpacks-com.s3.amazonaws.com/assets/badges/sketchpacks-badge-install.png "Install Separate Shapes with Sketchpacks")](https://sketchpacks.com/PEZ/SketchSeparateShapes/install)
@@ -30,4 +25,4 @@ Select two or more layers and select *Separate Shapes* from the *Plugin* menu.
 
 When more than two shapes are selected the bottommost shape will be considered the _base_ shape and every shape on top of the _base_ will be separated, one at a time towards the base shape. That is, the _non base_ shapes will *not* get seperataded from each other. Inspect the list of layers in the below screenshots, before and after the separation is done, and it might be clear what you can expect the plugin to do.
 
-![Before and after multi-split separation](Multi-split_separation.png)
+![Multi-split demo](Separate_Shapes_MultiSplit_demo.gif)

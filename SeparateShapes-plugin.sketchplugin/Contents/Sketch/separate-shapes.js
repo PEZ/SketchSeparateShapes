@@ -118,7 +118,14 @@ var shapeGroupFromOp = function shapeGroupFromOp(shape1, shape2, op) {
   }
   if (newPath) {
     var sg = MSShapeGroup.shapeWithBezierPath(newPath);
-    return splitAndStylePath(sg, shape1, shape2, op);
+    switch (op) {
+      case ops.SUBTRACT:
+        return splitAndStylePath(sg, shape1, shape2, op);
+        break;
+      case ops.INTERSECT:
+        return splitAndStylePath(sg, shape2, shape1, op);
+        break;
+    }
   }
   return null;
 };
