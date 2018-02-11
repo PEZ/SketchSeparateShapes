@@ -1,5 +1,6 @@
 {
   "identifier" : "com.betterthantomorrow.sketch.separate",
+  "appcast": "https://api.sketchpacks.com/v1/plugins/com.betterthantomorrow.sketch.separate/appcast",
   "compatibleVersion": 3,
   "bundleVersion": 1,
   "commands": [
