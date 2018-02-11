@@ -1,5 +1,6 @@
 {
   "identifier": "com.betterthantomorrow.sketch.separate",
+  "appcast": "https://api.sketchpacks.com/v1/plugins/com.betterthantomorrow.sketch.separate/appcast",
   "compatibleVersion": 3,
   "bundleVersion": 1,
   "commands": [
@@ -23,6 +24,5 @@
   "description": "A plugin for ”boolean” separating two overlapping shapes. Like _divide_ in Adobe Illustrator's Pathfinder.",
   "name": "SeparateShapes",
   "disableCocoaScriptPreprocessor": true,
-  "appcast": "https://raw.githubusercontent.com/PEZ/SketchSeparateShapes/master/.appcast.xml",
   "author": "Better Than Tomorrow"
 }
