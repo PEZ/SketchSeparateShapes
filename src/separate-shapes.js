@@ -1,4 +1,4 @@
-var isNullOrNil = function(value) {
+var isNullOrNil = function (value) {
   if (value && value.isKindOfClass(NSNull)) {
     return true
   } else if (value) {
@@ -12,7 +12,7 @@ var ops = {
   INTERSECT: "∩"
 };
 
-var splitAndStylePath = function(sg, shape1, shape2, op) {
+var splitAndStylePath = function (sg, shape1, shape2, op) {
   if (!isNullOrNil(sg)) {
     sg.setStyle(shape1.style());
     let splitNS = sg.splitPathsIntoShapes();
@@ -27,11 +27,11 @@ var splitAndStylePath = function(sg, shape1, shape2, op) {
   }
 }
 
-var shapeGroupFromOp = function(shape1, shape2, op) {
-  let path1 = shape1.bezierPathWithTransforms(),
-      path2 = shape2.bezierPathWithTransforms(),
-      newPath = null;
-  switch(op) {
+var shapeGroupFromOp = function (shape1, shape2, op) {
+  let path1 = shape1.pathInFrameWithTransforms(),
+    path2 = shape2.pathInFrameWithTransforms(),
+    newPath = null;
+  switch (op) {
     case ops.SUBTRACT:
       newPath = path1.booleanSubtractWith(path2);
       break;
@@ -41,24 +41,25 @@ var shapeGroupFromOp = function(shape1, shape2, op) {
   }
   if (newPath) {
     let sg = MSShapeGroup.shapeWithBezierPath(newPath);
-    switch(op) {
+    switch (op) {
       case ops.SUBTRACT:
         return splitAndStylePath(sg, shape1, shape2, op);
-      break;
+        break;
       case ops.INTERSECT:
         return splitAndStylePath(sg, shape2, shape1, op);
-      break;
+        break;
     }
   }
   return null;
 };
 
-var baseShapeBySubtractingOthers = function(selection) {
+var baseShapeBySubtractingOthers = function (selection) {
   let shape = selection[0];
   const layers = selection.count();
   let name = "";
+
   for (let i = layers - 1; i > 0; i--) {
-    shape = MSShapeGroup.shapeWithBezierPath(shape.bezierPathWithTransforms().booleanSubtractWith(selection[i].bezierPathWithTransforms()));
+    shape = MSShapeGroup.shapeWithBezierPath(shape.pathInFrameWithTransforms().booleanSubtractWith(selection[i].pathInFrameWithTransforms()));
     name += (name != "" ? " " + ops.SUBTRACT + " " : "") + selection[i].name();
   }
   shape.setName(name);
@@ -66,7 +67,7 @@ var baseShapeBySubtractingOthers = function(selection) {
   return shape;
 }
 
-var separate = function(context) {
+var separate = function (context) {
   let selection = context.selection;
   let layers = selection.count();
 

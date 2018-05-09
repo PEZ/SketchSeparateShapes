@@ -27,6 +27,7 @@
     "@skpm/builder": "^0.3.0"
   },
   "dependencies": {
-    "skpm": "^1.0.13"
+    "npm": "^6.0.0",
+    "skpm": "^1.0.15"
   }
 }
