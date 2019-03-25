@@ -14,12 +14,16 @@ var ops = {
 
 var splitAndStylePath = function (sg, shape1, shape2, op) {
   if (!isNullOrNil(sg)) {
-    sg.setStyle(shape1.style());
-    let splitNS = sg.splitPathsIntoShapes();
+    let splitNS = sg.layers();
     let count = splitNS.count();
     let splitJS = new Array(count);
     for (let i = count - 1; i >= 0; i--) {
-      let shape = splitNS[i];
+      let layer = splitNS[i];
+      let path = layer.pathInFrameWithTransforms();
+      let shape = MSLayer.layerWithPath(path);
+      shape.setStyle(shape1.style());
+      shape.frame().setX(sg.frame().x());
+      shape.frame().setY(sg.frame().y());
       shape.setName(shape1.name() + " " + op + " " + shape2.name() + (i > 0 ? " " + i : ""));
       splitJS[i] = shape;
     }
@@ -40,7 +44,7 @@ var shapeGroupFromOp = function (shape1, shape2, op) {
       break;
   }
   if (newPath) {
-    let sg = MSShapeGroup.shapeWithBezierPath(newPath);
+    let sg = MSShapeGroup.layerWithPath(newPath);
     switch (op) {
       case ops.SUBTRACT:
         return splitAndStylePath(sg, shape1, shape2, op);
@@ -59,7 +63,7 @@ var baseShapeBySubtractingOthers = function (selection) {
   let name = "";
 
   for (let i = layers - 1; i > 0; i--) {
-    shape = MSShapeGroup.shapeWithBezierPath(shape.pathInFrameWithTransforms().booleanSubtractWith(selection[i].pathInFrameWithTransforms()));
+    shape = MSShapeGroup.layerWithPath(shape.pathInFrameWithTransforms().booleanSubtractWith(selection[i].pathInFrameWithTransforms()));
     name += (name != "" ? " " + ops.SUBTRACT + " " : "") + selection[i].name();
   }
   shape.setName(name);
@@ -84,7 +88,8 @@ var separate = function (context) {
     }
     separatedShapeGroups = [].concat.apply([], separatedShapeGroups.filter(layer => layer));
 
-    selection[0].parentGroup().insertLayers_afterLayer(separatedShapeGroups, selection[0]);
+    //selection[0].parentGroup().insertLayers_afterLayer(separatedShapeGroups, selection[0]);
+    selection[0].parentGroup().addLayers(separatedShapeGroups);
     context.document.currentPage().changeSelectionBySelectingLayers(separatedShapeGroups);
 
     selection[0].removeFromParent();
