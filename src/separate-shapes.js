@@ -58,17 +58,17 @@ var shapeGroupFromOp = function (shape1, shape2, op) {
 };
 
 var baseShapeBySubtractingOthers = function (selection) {
-  let shape = selection[0];
-  const layers = selection.count();
-  let name = "";
+  const count = selection.count();
+  let baseShape = selection[0];
+  let name = selection[0].name();
 
-  for (let i = layers - 1; i > 0; i--) {
-    shape = MSShapeGroup.layerWithPath(shape.pathInFrameWithTransforms().booleanSubtractWith(selection[i].pathInFrameWithTransforms()));
-    name += (name != "" ? " " + ops.SUBTRACT + " " : "") + selection[i].name();
+  for (let i = count - 1; i > 0; i--) {
+    baseShape = MSLayer.layerWithPath(baseShape.pathInFrameWithTransforms().booleanSubtractWith(selection[i].pathInFrameWithTransforms()));
+    name += ops.SUBTRACT + " " + selection[i].name();
   }
-  shape.setName(name);
-  shape.setStyle(selection[0].style());
-  return shape;
+  baseShape.setName(name);
+  baseShape.setStyle(selection[0].style());
+  return baseShape;
 }
 
 var separate = function (context) {
@@ -79,7 +79,8 @@ var separate = function (context) {
     let separatedShapeGroups = [];
 
     let baseShape = baseShapeBySubtractingOthers(selection, layers);
-    separatedShapeGroups.push(splitAndStylePath(baseShape, selection[0], baseShape, ops.SUBTRACT));
+    separatedShapeGroups.push(baseShape);
+    //separatedShapeGroups.push(splitAndStylePath(baseShape, selection[0], baseShape, ops.SUBTRACT));
 
     for (let i = 1; i < layers; i++) {
       separatedShapeGroups.push(shapeGroupFromOp(selection[i], selection[0], ops.SUBTRACT));
@@ -88,7 +89,6 @@ var separate = function (context) {
     }
     separatedShapeGroups = [].concat.apply([], separatedShapeGroups.filter(layer => layer));
 
-    //selection[0].parentGroup().insertLayers_afterLayer(separatedShapeGroups, selection[0]);
     selection[0].parentGroup().addLayers(separatedShapeGroups);
     context.document.currentPage().changeSelectionBySelectingLayers(separatedShapeGroups);
 
